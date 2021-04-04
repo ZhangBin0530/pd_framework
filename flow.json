@@ -1,0 +1,71 @@
+{"PyGetInputs": {
+  "name": "PyGetInputs",
+  "input_files": [],
+  "output_files": [],
+  "input_connected_targets": [],
+  "output_connected_targets": [],
+  "cmd": "",
+  "tcsh": "",
+  "tpl": ""
+  },
+  "PyGenCmds": {
+  "name": "PyGenCmds",
+  "input_files": [],
+  "output_files": ["cmd/Floorplan.tcl","cmd/Placement.tcl","cmd/Cts.tcl","cmd/Route.tcl","cmd/ChipFinish.tcl"],
+  "input_connected_targets": ["PyGetInputs"],
+  "output_connected_targets": ["Floorplan"],
+  "cmd": "",
+  "tcsh": "python tcsh/PyGenCmds.py",
+    "tpl": ""
+  },
+  "Floorplan": {
+  "name": "Floorplan",
+  "input_files": [],
+  "output_files": [],
+  "input_connected_targets": ["PyGenCmds"],
+  "output_connected_targets": ["Placement"],
+  "cmd": "cmd/Floorplan.tcl",
+  "tcsh": "tcsh/Floorplan.tcsh",
+    "tpl": "template_file/Floorplan.tpl"
+  },
+  "Placement": {
+  "name": "Placement",
+  "input_files": [],
+  "output_files": [],
+  "input_connected_targets": ["Floorplan"],
+  "output_connected_targets": ["Cts"],
+  "cmd": "cmd/Placement.tcl",
+  "tcsh": "tcsh/Placement.tcsh",
+    "tpl": "template_file/Placement.tpl"
+  },
+  "Cts": {
+  "name": "Cts",
+  "input_files": ["Placement"],
+  "output_files": ["Route"],
+  "input_connected_targets": [],
+  "output_connected_targets": [],
+  "cmd": "cmd/Cts.tcl",
+  "tcsh": "tcsh/Cts.tcsh",
+    "tpl": "template_file/Cts.tpl"
+  },
+  "Route": {
+  "name": "Route",
+  "input_files": [],
+  "output_files": [],
+  "input_connected_targets": ["Cts"],
+  "output_connected_targets": ["ChipFinish"],
+  "cmd": "cmd/Route.tcl",
+  "tcsh": "tcsh/Route.tcsh",
+    "tpl": "template_file/Route.tpl"
+  },
+  "ChipFinish": {
+  "name": "ChipFinish",
+  "input_files": [],
+  "output_files": [],
+  "input_connected_targets": ["Route"],
+  "output_connected_targets": [],
+  "cmd": "cmd/ChipFinish.tcl",
+  "tcsh": "tcsh/ChipFinish.tcsh",
+    "tpl": "template_file/ChipFinish.tpl"
+  }
+}
